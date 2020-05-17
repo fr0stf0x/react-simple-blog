@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+          "type": "firefox",
+          "request": "launch",
+          "name": "API",
+          "url": "http://localhost:3000",
+          "webRoot": "${workspaceFolder}"
+        }
+      ]
+}

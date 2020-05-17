@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+          "type": "firefox",
+          "request": "launch",
+          "name": "Client",
+          "url": "http://localhost:1234",
+          "webRoot": "${workspaceFolder}/client"
+        },
+        {
+          "type": "firefox",
+          "request": "launch",
+          "name": "API",
+          "url": "http://localhost:3000",
+          "webRoot": "${workspaceFolder}/server"
+        }
+      ]
+}
