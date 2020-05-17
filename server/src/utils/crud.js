@@ -5,7 +5,6 @@ export const getOne = model => async (req, res) => {
       .populate('createdBy')
       .lean()
       .exec()
-    console.log('OUTPUT: doc', doc)
 
     if (!doc) {
       return res.status(400).end()

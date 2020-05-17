@@ -55,7 +55,6 @@ blogSchema.post('save', async (doc, next) => {
       .populate()
       .exec()
 
-    user.name = 'Tang Xuan Thao'
     user.blogs.push(doc)
 
     await user.save()
