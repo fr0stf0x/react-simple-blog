@@ -8,17 +8,15 @@ services:
       - "1235:1235"
     volumes:
       - ./client/src:/usr/src/client/src
-    depends_on:
-      - server
-  
-  server:
-    build: ./server
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./server/src:/usr/src/server/src
-    depends_on:
-      - database
+
+  # server:
+  #   build: ./server
+  #   ports:
+  #     - "3000:3000"
+  #   volumes:
+  #     - ./server/src:/usr/src/server/src
+  #   depends_on:
+  #     - database
 
   database:
     image: 'mongo'

@@ -1,10 +1,10 @@
-FROM node:12-alpine
+FROM node:10
 
 WORKDIR /usr/src/server
 
 COPY package*.json ./
 
-RUN apk --no-cache add --virtual builds-deps build-base python
+# RUN apk --no-cache add --virtual builds-deps build-base python
 
 RUN yarn 
 
@@ -12,4 +12,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD ["yarn", "run", "dev"]
+CMD ["yarn", "start"]

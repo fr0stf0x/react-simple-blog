@@ -14,7 +14,7 @@
     "test-auth": "yarn test -t Authentication:",
     "dev": "NODE_ENV=dev nodemon --exec yarn restart",
     "restart": "rimraf dist && yarn build && yarn start",
-    "start": "node dist/index.js"
+    "start": "yarn build && node dist/index.js"
   },
   "dependencies": {
     "bcrypt": "^3.0.2",
