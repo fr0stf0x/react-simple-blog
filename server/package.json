@@ -14,10 +14,11 @@
     "test-auth": "yarn test -t Authentication:",
     "dev": "NODE_ENV=dev nodemon --exec yarn restart",
     "restart": "rimraf dist && yarn build && yarn start",
-    "start": "yarn build && node dist/index.js"
+    "start": "yarn build && node dist/index.js",
+    "docker": "NODE_ENV=production npm run build && node dist/index.js"
   },
   "dependencies": {
-    "bcrypt": "^3.0.2",
+    "bcrypt": "^4.0.1",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "cuid": "^2.1.4",

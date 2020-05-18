@@ -1,15 +1,19 @@
-FROM node:10
+FROM node:12-alpine
 
 WORKDIR /usr/src/server
 
 COPY package*.json ./
 
-# RUN apk --no-cache add --virtual builds-deps build-base python
-
-RUN yarn 
+RUN npm install 
 
 COPY . .
 
+# Fix bcrypt
+RUN apk update && apk add --no-cache make gcc g++ python && \
+  npm install && \
+  npm rebuild bcrypt --build-from-source && \
+  apk del make gcc g++ python
+
 EXPOSE 3000
 
-CMD ["yarn", "start"]
+CMD ["npm", "run", "docker"]

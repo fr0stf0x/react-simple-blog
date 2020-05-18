@@ -1,5 +1,9 @@
 # Zigvy Technical Assignment Interview
 
+## Run instruction
+
+`docker-compose up --build -d`
+
 ## Description
 - This is a **Small Project Test** for online interview at Zigvy Corp. This assignment has 2 main tasks: **Front-end** and **Back-end**. You will be required to complete each tasks with your applied position. For short, you can check the list below
   - Full-stack engineer: Both Front-end and Back-end

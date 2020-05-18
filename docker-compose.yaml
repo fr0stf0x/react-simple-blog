@@ -1,35 +1,46 @@
 version: "3.7"
 
 services:
+  database:
+    image: 'mongo'
+    container_name: 'mongo-container'
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=123456
+    networks:
+      - backend
+    ports:
+      - '27017:27017'
+
   client:
     build: ./client
     ports:
       - "1234:1234"
       - "1235:1235"
+    networks: 
+      - frontend
     volumes:
       - ./client/src:/usr/src/client/src
+    depends_on:
+      - server
 
-  # server:
-  #   build: ./server
-  #   ports:
-  #     - "3000:3000"
-  #   volumes:
-  #     - ./server/src:/usr/src/server/src
-  #   depends_on:
-  #     - database
-
-  database:
-    image: 'mongo'
-    container_name: 'mongo-container'
-    environment:
-      # - MONGO_INITDB_DATABASE=blog-system
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=123456
-    # volumes:
-    #   # - ./init-mongo.js:/docker-entrypoint-initdb.d/initmongo.js:ro
-    #   - blog-data ./mongo-data:/data/db
+  server:
+    build: ./server
     ports:
-      - '27017-27019:27017-27019'
+      - "3000:3000"
+    volumes:
+      - ./server/src:/usr/src/server/src
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - database
+    networks:
+      - backend
+      - frontend
 
-# volumes:
-#   blog-data:
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
+
