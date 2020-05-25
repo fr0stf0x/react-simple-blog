@@ -1,0 +1,49 @@
+version: "3.7"
+
+services:
+  database:
+    image: 'mongo'
+    container_name: 'mongo-container'
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=123456
+    networks:
+      - backend
+    ports:
+      - '27017:27017'
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile-prod
+    ports:
+      - "5500:80"
+    networks:
+      - frontend
+    volumes:
+      - ./client/src:/usr/src/client/src
+    depends_on:
+      - server
+
+  server:
+    build: 
+      context: ./server
+      dockerfile: Dockerfile-prod
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./server/src:/usr/src/server/src
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - database
+    networks:
+      - backend
+      - frontend
+
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
+
